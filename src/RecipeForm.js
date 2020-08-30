@@ -26,6 +26,7 @@ export default class RecipeForm extends Component {
   render() {
     return (
       <div className="pb-3">
+        <h1 className="text-center">Search Recipes</h1>
         <form onSubmit={event => this.handleSubmit(event)}>
           <div className="form-group">
             <label>Ingredient: </label>
