@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Recipe from "./containers/Recipe";
+import Recipe from "./Recipe";
 export default class Recipes extends Component {
   constructor(props) {
     super(props);
@@ -10,9 +10,9 @@ export default class Recipes extends Component {
   render() {
     return (
       <div className="row ">
-        {this.state.recipes.map(recipe => (
-          <Recipe key={recipe.recipe} recipe={recipe} />
-        ))}
+        {this.state.recipes.map(recipe => {
+          return <Recipe key={recipe.recipe.label} recipe={recipe} />;
+        })}
       </div>
     );
   }
