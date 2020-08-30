@@ -5,7 +5,8 @@ export default class RecipeForm extends Component {
     super(props);
     this.state = {
       ingredient: "",
-      isSubmitted: false
+      isSubmitted: false,
+      count: 10
     };
   }
 
@@ -18,23 +19,43 @@ export default class RecipeForm extends Component {
 
   handleChange = event => {
     this.setState({
-      ingredient: event.target.value
+      [event.target.name]: event.target.value
     });
   };
 
   render() {
     return (
-      <div>
+      <div className="pb-3">
         <form onSubmit={event => this.handleSubmit(event)}>
-          <input
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.ingredient}
-          ></input>
+          <div className="form-group">
+            <label>Ingredient: </label>
+            <input
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.ingredient}
+              name="ingredient"
+            ></input>
+          </div>
+          <div className="form-group">
+            <label>Number of recipes to display</label>
+            <select
+              onChange={event => this.handleChange(event)}
+              name="count"
+              value={this.state.count}
+            >
+              <option>10</option>
+              <option>20</option>
+              <option>30</option>
+            </select>
+          </div>
+
           <input type="submit" />
         </form>
         {!!this.state.isSubmitted && (
-          <Recipes ingredient={this.state.ingredient} />
+          <Recipes
+            ingredient={this.state.ingredient}
+            count={this.state.count}
+          />
         )}
       </div>
     );

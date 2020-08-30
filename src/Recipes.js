@@ -9,7 +9,7 @@ export default class Recipes extends Component {
   }
   render() {
     return (
-      <div className="row ">
+      <div className="recipe-grid">
         {this.state.recipes.map(recipe => {
           return <Recipe key={recipe.recipe.label} recipe={recipe} />;
         })}
@@ -19,7 +19,7 @@ export default class Recipes extends Component {
 
   componentDidMount() {
     fetch(
-      `https://api.edamam.com/search?q=${this.props.ingredient}&app_id=a4332796&app_key=07da53188fd4a9d44e42a56f6a560a27&from=0&to=3`
+      `https://api.edamam.com/search?q=${this.props.ingredient}&app_id=a4332796&app_key=07da53188fd4a9d44e42a56f6a560a27&from=0&to=${this.props.count}`
     )
       .then(resp => resp.json())
       .then(recipes => this.setState({ recipes: recipes.hits }));
